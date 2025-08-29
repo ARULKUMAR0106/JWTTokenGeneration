@@ -15,7 +15,7 @@
             var token = new JwtSecurityToken(_config["JWT:Issuer"], _config["JWT:Audience"], claims, expires: DateTime.Now.AddMinutes(Convert.ToInt32(_config["JWT:DurationMinutes"])), signingCredentials: creadentials);
             string values = new JwtSecurityTokenHandler().WriteToken(token);
             string encrptedToken = EncryptorDecryptor.Encrypt(values);
-            model.token= encrptedToken;// this is the token
+            model.token= encrptedToken;
             bool success=_userValidationManager.SetUserToken(encrptedToken,model.Id,Resource);   
             return model;
         }
